@@ -1,0 +1,21 @@
+##### prepare virtual env #####
+source ./env/bin/activate env 
+
+
+#Part#1 (optional)
+#docker build --tag python-django .
+#docker run --publish 7777:8000 python-django
+
+Part#2
+- remove all django init files
+delete 'app/tweetme2/' directory
+delete manage.py
+delete db.sqlite3
+- build django docker 
+docker-compose build
+- create django projects from Django Docker 
+docker-compose run --rm app django-admin startproject tweetme2 .
+docker-compose up
+docker exec -it tweetme2_container /bin/bash
+- inside docker 
+root@5ab2fe1354cd:/django# python manage.py migrate
