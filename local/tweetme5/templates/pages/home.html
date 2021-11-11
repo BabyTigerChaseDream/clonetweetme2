@@ -1,1 +1,29 @@
-<h1>Hello Home Page</h1>
+{% extends 'base.html'%}
+
+
+{% block head_title%}
+this is amazing!!!!
+{% endblock head_title%}
+
+
+{% block content%}
+Welcome to Tweetme 2
+
+<script>
+const xhr = new XMLHttpRequest() // let xhr = new SomeClass()
+const method = 'GET' // POST
+const url = '/tweets'
+const responseType = 'json'
+
+xhr.responseType = responseType
+
+xhr.open(method,url)
+xhr.onload = function() {
+	console.log(xhr.response)
+	const serverResponse=xhr.response
+	var listedItem = serverResponse.response
+}
+xhr.send()
+
+</script>
+{% endblock content%}
