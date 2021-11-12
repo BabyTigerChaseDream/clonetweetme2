@@ -30,6 +30,9 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 LOGIN_URL = "/login"
 
+MAX_TWEET_LENGTH = 240
+TWEET_ACTION_OPTIONS = ["like", "unlike", "retweet"]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party
+    # ./bin/pip3 install djangorestframework
+    'rest_framework',
+    # internal
     'me5',
 ]
 
@@ -131,3 +138,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DEFAULT_RENDERER_CLASSES = [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+
+if DEBUG:
+    DEFAULT_RENDERER_CLASSES += [
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+REST_FRAMEWORK = {
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication'
+    ],
+    'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
+}
